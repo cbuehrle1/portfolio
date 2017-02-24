@@ -3,10 +3,12 @@ var shader = document.querySelector(".container-shader");
 var about = document.querySelector(".about-container");
 var aboutFloat = document.querySelectorAll(".float-div");
 var aboutContent = document.querySelectorAll('.float-centering');
+var headerDiv = document.querySelector('header');
+
 var toggled = [false, false]
 
 var insertText = ["About 8 months ago I decided I enjoyed problem-solving so much, that I wanted to pursue a career in web development. Coming from a background in technical sales, I bring excellent communication skills and attention to detail along with my quickly developing new set of technical knowledge.",
-"Technologies I have used:; HTML5; CSS3; JavaScript; React.js; Node.js; Express.js; MongoDB; Mysql; Gulp; With a list of tools continues to grow daily!"]
+"Technologies I have used:; HTML5; CSS3; JavaScript; React.js; Node.js; Express.js; MongoDB; Mysql; Gulp; With a list of tools that continues to grow daily!"]
 
 function parser (item) {
 
@@ -114,16 +116,46 @@ about.addEventListener("click", function(evt) {
     about.style.height = adjustedHeight + "px";
   }
   else {
+
     var test = parser(insertText[index]);
-    console.log(typeof test);
-    console.log(test);
-    var contentP = document.createElement("p");
-    contentP.textContent = insertText[index];
-    targetElement.appendChild(contentP);
+
+    if (typeof test === "object") {
+      var contentP = document.createElement("p");
+      var techList = document.createElement("ul");
+      contentP.textContent = test.title;
+
+      contentP.style.textAlign = "left";
+      techList.style.textAlign = "left";
+
+      test.techList.forEach(function(item) {
+        var li = document.createElement("li")
+        li.textContent = item;
+        techList.appendChild(li);
+      });
+      targetElement.appendChild(contentP);
+      targetElement.appendChild(techList);
+    }
+    else if (typeof test === "string") {
+      var contentP = document.createElement("p");
+      contentP.style.textAlign = "left";
+      contentP.textContent = insertText[index];
+      targetElement.appendChild(contentP);
+    }
+
     toggled[index] = true;
     aboutFloat[index].style.height = window.innerHeight + "px";
     about.style.height = window.innerHeight + "px";
   }
 
+});
+
+window.addEventListener("scroll", function() {
+
+  if (window.scrollY >= window.innerHeight) {
+    headerDiv.className = "content-header";
+  }
+  else if (window.scrollY < window.innerHeight) {
+    headerDiv.className = "";
+  }
 
 });

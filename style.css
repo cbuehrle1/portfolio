@@ -63,6 +63,7 @@ body{
 	position: absolute;
 	top: 0;
 	left: 0;
+	z-index: 1;
 }
 .title-content{
 	position: absolute;
@@ -89,10 +90,41 @@ body{
 	background-color: white;
 	width: 50%;
 	padding: 10%;
-	margin: 10% 15%;
+	margin: 10% 15% 0 15%;
 	cursor: pointer;
+	text-align: center;
 }
 .float-centering .float-content{
-	text-align: center;
 	font-size: 28px;
+}
+header{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0);
+	padding: 5px 0;
+	color: white;
+	z-index: 2;
+}
+header h1{
+	margin-left: 5%;
+}
+.content-header{
+	background-color: white;
+	color: black;
+}
+.project-container{
+	overflow: auto;
+	margin-top: 25px;
+}.project-container-first{
+	overflow: auto;
+	margin-top: 0;
+}
+.project-float{
+	float: left;
+	width: 25%;
+	margin: 0 7.5%;
+	padding: 5%;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+	background-color: white;
 }
